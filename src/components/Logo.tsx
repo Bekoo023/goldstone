@@ -17,8 +17,8 @@ export default function Logo({ light = false }: LogoProps) {
         alt="GoldStone"
         className={`h-auto object-contain ${
           light
-            ? "w-[245px] max-w-full"
-            : "w-[185px] sm:w-[225px]"
+            ? "w-[235px] max-w-full"
+            : "w-[175px] sm:w-[215px]"
         }`}
       />
     </Link>
