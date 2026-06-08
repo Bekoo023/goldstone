@@ -1,95 +1,70 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router";
-import { ArrowRightIcon, CloseIcon, MenuIcon } from "./Icons";
+import { Link } from "react-router";
+import { ArrowRightIcon } from "./Icons";
 import Logo from "./Logo";
 
-const navigation = [
-  { name: "Home", to: "/" },
-  { name: "Over ons", to: "/over-ons" },
-  { name: "Werkwijze", to: "/werkwijze" },
-  { name: "Contact", to: "/contact" },
+const links = [
+  { label: "Home", to: "/" },
+  { label: "Over ons", to: "/over-ons" },
+  { label: "Werkwijze", to: "/werkwijze" },
+  { label: "Contact", to: "/contact" },
 ];
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeMenu = () => setIsOpen(false);
-
+export default function Footer() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#14213d]/8 bg-[#fbfaf7]/90 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <Logo />
+    <footer className="bg-[#14213d] text-white">
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <div className="grid gap-12 border-b border-white/10 pb-12 lg:grid-cols-[1.4fr_0.7fr_0.9fr]">
+          <div>
+            <Logo light />
+            <p className="mt-6 max-w-md leading-7 text-[#c7cfdd]">
+              De commerciële groeipartner voor bedrijven die structureel meer
+              gekwalificeerde afspraken en meer grip op hun salesproces willen.
+            </p>
+          </div>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Hoofdnavigatie">
-          {navigation.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `relative py-2 text-sm font-bold transition ${
-                  isActive ? "text-[#b98724]" : "text-[#526078] hover:text-[#14213d]"
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {item.name}
-                  {isActive && (
-                    <span className="absolute inset-x-0 -bottom-1 mx-auto h-0.5 w-5 rounded-full bg-[#d5a843]" />
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
-        </nav>
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#f0c86a]">
+              Navigatie
+            </p>
 
-        <Link
-          to="/contact"
-          className="hidden items-center gap-2 rounded-full bg-[#14213d] px-5 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#26395e] lg:inline-flex"
-        >
-          Plan een gesprek
-          <ArrowRightIcon className="h-4 w-4" />
-        </Link>
+            <div className="mt-5 flex flex-col gap-3">
+              {links.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="w-fit text-sm text-[#c7cfdd] transition hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
 
-        <button
-          type="button"
-          aria-label={isOpen ? "Sluit menu" : "Open menu"}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((value) => !value)}
-          className="grid h-11 w-11 place-items-center rounded-full border border-[#14213d]/10 text-[#14213d] lg:hidden"
-        >
-          {isOpen ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
-        </button>
-      </div>
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#f0c86a]">
+              Klaar voor groei?
+            </p>
 
-      {isOpen && (
-        <div className="border-t border-[#14213d]/8 bg-[#fbfaf7] px-5 py-5 lg:hidden">
-          <nav className="mx-auto flex max-w-7xl flex-col gap-1" aria-label="Mobiele navigatie">
-            {navigation.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                onClick={closeMenu}
-                className={({ isActive }) =>
-                  `rounded-2xl px-4 py-3 text-base font-bold transition ${
-                    isActive ? "bg-[#f7e6bc] text-[#946b19]" : "text-[#526078] hover:bg-white"
-                  }`
-                }
-              >
-                {item.name}
-              </NavLink>
-            ))}
+            <p className="mt-5 text-sm leading-6 text-[#c7cfdd]">
+              Ontdek tijdens een vrijblijvend strategiegesprek welke commerciële
+              kansen er voor jouw bedrijf liggen.
+            </p>
+
             <Link
               to="/contact"
-              onClick={closeMenu}
-              className="mt-3 flex items-center justify-center gap-2 rounded-full bg-[#14213d] px-5 py-3.5 text-sm font-bold text-white"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#f0c86a] transition hover:gap-3"
             >
               Plan een gesprek
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
-          </nav>
+          </div>
         </div>
-      )}
-    </header>
+
+        <div className="flex flex-col gap-3 pt-7 text-xs text-[#93a0b5] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} GoldStone. Alle rechten voorbehouden.</p>
+          <p>Commerciële infrastructuur voor groei.</p>
+        </div>
+      </div>
+    </footer>
   );
 }
