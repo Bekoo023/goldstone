@@ -1,5 +1,8 @@
 import { Link } from "react-router";
 import CtaSection from "../components/CtaSection";
+import Reveal from "../components/Reveal";
+import CountUp from "../components/CountUp";
+import Faq from "../components/Faq";
 import {
   ArrowRightIcon,
   CalendarIcon,
@@ -16,10 +19,10 @@ import {
 import SectionHeading from "../components/SectionHeading";
 
 const stats = [
-  ["2000+", "bedrijven geholpen"],
-  ["6+", "jaar commerciële ervaring"],
-  ["100%", "focus op gekwalificeerde afspraken"],
-  ["30", "dagen tot livegang"],
+  { value: 2000, suffix: "+", label: "bedrijven geholpen" },
+  { value: 6, suffix: "+", label: "jaar commerciële ervaring" },
+  { value: 100, suffix: "%", label: "focus op gekwalificeerde afspraken" },
+  { value: 30, suffix: "", label: "dagen tot livegang" },
 ];
 
 const benefits = [
@@ -101,21 +104,25 @@ const channels = [
   },
 ];
 
+const focusRing =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b98724] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8f6f1]";
+
 function CheckBadge() {
   return (
     <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e5f3e9] text-[#3b9860]">
-      <CheckIcon className="h-3.5 w-3.5" />
+      <CheckIcon className="h-3.5 w-3.5" aria-hidden="true" />
     </span>
   );
 }
 
 function DashboardPreview() {
   return (
-    <div className="relative mx-auto w-full max-w-[590px]">
+    // Illustratieve weergave van het product — verborgen voor schermlezers.
+    <div className="relative mx-auto w-full max-w-[590px]" aria-hidden="true">
       <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-[#e7c26f]/35 blur-3xl" />
       <div className="absolute -right-10 bottom-6 h-40 w-40 rounded-full bg-[#9fb5c9]/30 blur-3xl" />
 
-      <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/95 p-4 shadow-[0_28px_90px_-40px_rgba(20,33,61,0.4)] backdrop-blur sm:p-6">
+      <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/95 p-4 shadow-[0_28px_90px_-40px_rgba(20,33,61,0.4)] backdrop-blur transition duration-500 hover:-translate-y-1 hover:shadow-[0_36px_110px_-40px_rgba(20,33,61,0.5)] sm:p-6">
         <div className="flex items-center justify-between border-b border-[#14213d]/8 pb-5">
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#9aa5b5]">
@@ -127,7 +134,10 @@ function DashboardPreview() {
           </div>
 
           <span className="inline-flex items-center gap-2 rounded-full bg-[#e8f6ed] px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-[#247445]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#4aa86a]" />
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4aa86a] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#4aa86a]" />
+            </span>
             Live
           </span>
         </div>
@@ -188,7 +198,7 @@ function DashboardPreview() {
           <div className="rounded-2xl bg-[#14213d] p-4 text-white">
             <div className="flex items-center justify-between">
               <p className="text-xs font-black">Agenda</p>
-              <CalendarIcon className="h-4 w-4 text-[#f0c86a]" />
+              <CalendarIcon className="h-4 w-4 text-[#f0c86a]" aria-hidden="true" />
             </div>
 
             <p className="mt-1 text-[10px] text-[#afbbcd]">Deze week</p>
@@ -221,7 +231,7 @@ function DashboardPreview() {
 
       <div className="absolute -bottom-6 -left-3 hidden items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3 shadow-xl sm:flex">
         <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#fcf1d4] text-[#a47720]">
-          <PhoneIcon className="h-5 w-5" />
+          <PhoneIcon className="h-5 w-5" aria-hidden="true" />
         </span>
         <span>
           <span className="block text-xs font-black text-[#14213d]">
@@ -240,13 +250,12 @@ export default function HomePage() {
   return (
     <main>
       <section className="relative overflow-hidden bg-[#f8f6f1] px-5 pb-20 pt-8 sm:px-8 sm:pb-28 sm:pt-12">
-        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-[#f0c86a]/18 blur-3xl" />
-        <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#a9bed0]/18 blur-3xl" />
+        <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-[#f0c86a]/18 blur-3xl" aria-hidden="true" />
+        <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#a9bed0]/18 blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+          <Reveal>
             <h1 className="max-w-3xl text-4xl font-black leading-[1.06] text-[#14213d] sm:text-6xl xl:text-[4.6rem]">
-              {" "}
               Van losse leads naar{" "}
               <span className="text-[#b98724]">voorspelbare omzetgroei.</span>
             </h1>
@@ -260,15 +269,15 @@ export default function HomePage() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#14213d] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#26395e]"
+                className={`inline-flex items-center justify-center gap-2 rounded-full bg-[#14213d] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#26395e] ${focusRing}`}
               >
                 Plan een strategiegesprek
-                <ArrowRightIcon className="h-4 w-4" />
+                <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
               </Link>
 
               <Link
                 to="/werkwijze"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-[#14213d]/12 bg-white px-6 py-4 text-sm font-black text-[#14213d] transition hover:-translate-y-1 hover:border-[#14213d]/30"
+                className={`inline-flex items-center justify-center gap-2 rounded-full border border-[#14213d]/12 bg-white px-6 py-4 text-sm font-black text-[#14213d] transition hover:-translate-y-1 hover:border-[#14213d]/30 ${focusRing}`}
               >
                 Bekijk onze werkwijze
               </Link>
@@ -286,15 +295,17 @@ export default function HomePage() {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <DashboardPreview />
+          <Reveal delay={150}>
+            <DashboardPreview />
+          </Reveal>
         </div>
       </section>
 
       <section className="border-y border-[#14213d]/8 bg-white px-5 sm:px-8">
         <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
-          {stats.map(([number, label], index) => (
+          {stats.map(({ value, suffix, label }, index) => (
             <div
               key={label}
               className={`py-7 sm:py-9 ${
@@ -306,7 +317,7 @@ export default function HomePage() {
               } ${index === 2 ? "lg:border-l lg:pl-8" : ""}`}
             >
               <p className="text-3xl font-black text-[#14213d] sm:text-4xl">
-                {number}
+                <CountUp value={value} suffix={suffix} />
               </p>
               <p className="mt-1 text-[10px] font-black uppercase tracking-[0.15em] text-[#8490a2] sm:text-xs">
                 {label}
@@ -318,26 +329,27 @@ export default function HomePage() {
 
       <section className="px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
-          <SectionHeading
-            eyebrow="Waarom GoldStone"
-            title="Groei vraagt niet alleen om meer leads. Groei vraagt om structuur."
-            description="Veel commerciële kansen verdwijnen door trage opvolging, beperkte kwalificatie of te weinig inzicht. GoldStone brengt alle onderdelen samen in één schaalbaar systeem."
-          />
+          <Reveal>
+            <SectionHeading
+              eyebrow="Waarom GoldStone"
+              title="Groei vraagt niet alleen om meer leads. Groei vraagt om structuur."
+              description="Veel commerciële kansen verdwijnen door trage opvolging, beperkte kwalificatie of te weinig inzicht. GoldStone brengt alle onderdelen samen in één schaalbaar systeem."
+            />
+          </Reveal>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {benefits.map(({ title, text, icon: Icon }) => (
-              <article
-                key={title}
-                className="rounded-[1.6rem] border border-[#14213d]/8 bg-white p-6 shadow-[0_14px_50px_-35px_rgba(20,33,61,0.4)] transition hover:-translate-y-1"
-              >
-                <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#fcf1d4] text-[#a47720]">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-6 text-lg font-black text-[#14213d]">
-                  {title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-[#6d788d]">{text}</p>
-              </article>
+            {benefits.map(({ title, text, icon: Icon }, index) => (
+              <Reveal key={title} delay={index * 80} className="h-full">
+                <article className="h-full rounded-[1.6rem] border border-[#14213d]/8 bg-white p-6 shadow-[0_14px_50px_-35px_rgba(20,33,61,0.4)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_-35px_rgba(20,33,61,0.45)]">
+                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#fcf1d4] text-[#a47720]">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-6 text-lg font-black text-[#14213d]">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[#6d788d]">{text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -345,46 +357,47 @@ export default function HomePage() {
 
       <section className="bg-[#f7f5f0] px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="De GoldStone-machine"
-            title="Van eerste klik tot gekwalificeerde afspraak."
-            description="Een volledig commercieel systeem met menselijke opvolging op de momenten waarop dat daadwerkelijk verschil maakt."
-            center
-          />
+          <Reveal>
+            <SectionHeading
+              eyebrow="De GoldStone-machine"
+              title="Van eerste klik tot gekwalificeerde afspraak."
+              description="Een volledig commercieel systeem met menselijke opvolging op de momenten waarop dat daadwerkelijk verschil maakt."
+              center
+            />
+          </Reveal>
 
           <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {machineSteps.map(({ number, title, text, tag, icon: Icon }) => (
-              <article
-                key={number}
-                className="group rounded-[1.8rem] border border-[#14213d]/8 bg-white p-7 transition hover:-translate-y-2 hover:shadow-[0_22px_65px_-35px_rgba(20,33,61,0.4)] sm:p-8"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#14213d] text-white transition group-hover:bg-[#b98724]">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <span className="text-4xl font-black text-[#ebdfc4]">
-                    {number}
-                  </span>
-                </div>
+            {machineSteps.map(({ number, title, text, tag, icon: Icon }, index) => (
+              <Reveal key={number} delay={index * 100} className="h-full">
+                <article className="group h-full rounded-[1.8rem] border border-[#14213d]/8 bg-white p-7 transition hover:-translate-y-2 hover:shadow-[0_22px_65px_-35px_rgba(20,33,61,0.4)] sm:p-8">
+                  <div className="flex items-center justify-between">
+                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#14213d] text-white transition group-hover:bg-[#b98724]">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <span className="text-4xl font-black text-[#ebdfc4]" aria-hidden="true">
+                      {number}
+                    </span>
+                  </div>
 
-                <p className="mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-[#b98724]">
-                  {tag}
-                </p>
-                <h3 className="mt-3 text-2xl font-black text-[#14213d]">
-                  {title}
-                </h3>
-                <p className="mt-4 leading-7 text-[#6d788d]">{text}</p>
-              </article>
+                  <p className="mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-[#b98724]">
+                    {tag}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-black text-[#14213d]">
+                    {title}
+                  </h3>
+                  <p className="mt-4 leading-7 text-[#6d788d]">{text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
 
           <div className="mt-10 text-center">
             <Link
               to="/werkwijze"
-              className="inline-flex items-center gap-2 text-sm font-black text-[#a47720] transition hover:gap-3"
+              className={`inline-flex items-center gap-2 rounded-full px-2 py-1 text-sm font-black text-[#a47720] transition hover:gap-3 ${focusRing}`}
             >
               Ontdek de volledige werkwijze
-              <ArrowRightIcon className="h-4 w-4" />
+              <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -392,88 +405,100 @@ export default function HomePage() {
 
       <section className="px-5 py-20 sm:px-8 sm:py-28">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Het verschil"
-            title="Geen losse marketingacties. Wel een commercieel systeem dat blijft werken."
-            description="De waarde zit niet alleen in het genereren van aanvragen, maar vooral in wat er daarna gebeurt."
-            center
-          />
+          <Reveal>
+            <SectionHeading
+              eyebrow="Het verschil"
+              title="Geen losse marketingacties. Wel een commercieel systeem dat blijft werken."
+              description="De waarde zit niet alleen in het genereren van aanvragen, maar vooral in wat er daarna gebeurt."
+              center
+            />
+          </Reveal>
 
           <div className="mt-14 grid gap-5 lg:grid-cols-2">
-            <div className="rounded-[1.8rem] border border-[#14213d]/8 bg-[#f7f5f0] p-7 sm:p-9">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8c96a5]">
-                Traditionele aanpak
-              </p>
-              <h3 className="mt-3 text-2xl font-black text-[#14213d]">
-                Losse leads, losse acties.
-              </h3>
+            <Reveal className="h-full">
+              <div className="h-full rounded-[1.8rem] border border-[#14213d]/8 bg-[#f7f5f0] p-7 sm:p-9">
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8c96a5]">
+                  Traditionele aanpak
+                </p>
+                <h3 className="mt-3 text-2xl font-black text-[#14213d]">
+                  Losse leads, losse acties.
+                </h3>
 
-              <ul className="mt-7 space-y-4">
-                {traditional.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-sm font-bold text-[#6d788d]"
-                  >
-                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#ece7df] text-[#9e8e7a]">
-                      ×
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                <ul className="mt-7 space-y-4">
+                  {traditional.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 text-sm font-bold text-[#6d788d]"
+                    >
+                      <span
+                        className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#ece7df] text-[#9e8e7a]"
+                        aria-hidden="true"
+                      >
+                        ×
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
 
-            <div className="rounded-[1.8rem] bg-[#14213d] p-7 text-white shadow-[0_22px_65px_-35px_rgba(20,33,61,0.65)] sm:p-9">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#f0c86a]">
-                De GoldStone-aanpak
-              </p>
-              <h3 className="mt-3 text-2xl font-black">
-                Structuur, controle en opvolging.
-              </h3>
+            <Reveal delay={120} className="h-full">
+              <div className="h-full rounded-[1.8rem] bg-[#14213d] p-7 text-white shadow-[0_22px_65px_-35px_rgba(20,33,61,0.65)] sm:p-9">
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#f0c86a]">
+                  De GoldStone-aanpak
+                </p>
+                <h3 className="mt-3 text-2xl font-black">
+                  Structuur, controle en opvolging.
+                </h3>
 
-              <ul className="mt-7 space-y-4">
-                {goldstone.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-sm font-bold text-[#d9e0eb]"
-                  >
-                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#f0c86a]/15 text-[#f0c86a]">
-                      <CheckIcon className="h-4 w-4" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                <ul className="mt-7 space-y-4">
+                  {goldstone.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 text-sm font-bold text-[#d9e0eb]"
+                    >
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#f0c86a]/15 text-[#f0c86a]">
+                        <CheckIcon className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       <section className="bg-[#f7f5f0] px-5 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Persoonlijke opvolging"
-            title="Automatisering waar het kan. Menselijk contact waar het telt."
-            description="Nieuwe aanvragen worden via meerdere kanalen benaderd, zodat waardevolle commerciële kansen niet blijven liggen."
-            center
-          />
+          <Reveal>
+            <SectionHeading
+              eyebrow="Persoonlijke opvolging"
+              title="Automatisering waar het kan. Menselijk contact waar het telt."
+              description="Nieuwe aanvragen worden via meerdere kanalen benaderd, zodat waardevolle commerciële kansen niet blijven liggen."
+              center
+            />
+          </Reveal>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-3">
-            {channels.map(({ icon: Icon, title, text }) => (
-              <article
-                key={title}
-                className="rounded-[1.6rem] border border-[#14213d]/8 bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_-35px_rgba(20,33,61,0.4)]"
-              >
-                <Icon className="h-6 w-6 text-[#b98724]" />
-                <h3 className="mt-5 text-lg font-black text-[#14213d]">
-                  {title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[#6d788d]">{text}</p>
-              </article>
+            {channels.map(({ icon: Icon, title, text }, index) => (
+              <Reveal key={title} delay={index * 80} className="h-full">
+                <article className="h-full rounded-[1.6rem] border border-[#14213d]/8 bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_-35px_rgba(20,33,61,0.4)]">
+                  <Icon className="h-6 w-6 text-[#b98724]" aria-hidden="true" />
+                  <h3 className="mt-5 text-lg font-black text-[#14213d]">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-[#6d788d]">{text}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <Faq />
 
       <CtaSection />
     </main>
