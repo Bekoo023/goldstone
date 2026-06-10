@@ -18,8 +18,8 @@ import SectionHeading from "../components/SectionHeading";
 
 const stats = [
   ["2000+", "bedrijven geholpen"],
-  ["6+", "jaar trackrecord"],
-  ["360°", "sales & marketing"],
+  ["6+", "jaar commerciële ervaring"],
+  ["100%", "focus op gekwalificeerde afspraken"],
   ["30", "dagen tot livegang"],
 ];
 
@@ -140,11 +140,15 @@ function DashboardPreview() {
             ["€37,5k", "Pipeline", "+24%"],
           ].map(([value, label, change]) => (
             <div key={label} className="rounded-2xl bg-[#f7f5f0] p-3 sm:p-4">
-              <p className="text-lg font-black text-[#14213d] sm:text-2xl">{value}</p>
+              <p className="text-lg font-black text-[#14213d] sm:text-2xl">
+                {value}
+              </p>
               <p className="mt-1 text-[9px] font-black uppercase tracking-[0.14em] text-[#8d99aa] sm:text-[10px]">
                 {label}
               </p>
-              <p className="mt-2 text-[10px] font-black text-[#3d9960]">{change}</p>
+              <p className="mt-2 text-[10px] font-black text-[#3d9960]">
+                {change}
+              </p>
             </div>
           ))}
         </div>
@@ -152,7 +156,9 @@ function DashboardPreview() {
         <div className="mt-4 grid gap-4 sm:grid-cols-[1.08fr_0.92fr]">
           <div className="rounded-2xl border border-[#14213d]/8 p-4">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-black text-[#14213d]">Nieuwe aanvragen</p>
+              <p className="text-xs font-black text-[#14213d]">
+                Nieuwe aanvragen
+              </p>
               <p className="text-[10px] font-bold text-[#9ba5b4]">Vandaag</p>
             </div>
 
@@ -203,7 +209,9 @@ function DashboardPreview() {
 
         <div className="mt-4 rounded-2xl border border-[#14213d]/8 p-4">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-black text-[#14213d]">Opvolging voltooid</p>
+            <p className="text-xs font-black text-[#14213d]">
+              Opvolging voltooid
+            </p>
             <p className="text-xs font-black text-[#b98724]">84%</p>
           </div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#edf0f3]">
@@ -232,18 +240,14 @@ function DashboardPreview() {
 export default function HomePage() {
   return (
     <main>
-      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 pb-20 pt-14 sm:px-8 sm:pb-28 sm:pt-20">
+      <section className="relative overflow-hidden bg-[#f8f6f1] px-5 pb-20 pt-8 sm:px-8 sm:pb-28 sm:pt-12">
         <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-[#f0c86a]/18 blur-3xl" />
         <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-[#a9bed0]/18 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-[#d9b45d]/30 bg-[#fcf4df] px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#946b19] sm:text-[11px]">
-              <SparkIcon className="h-4 w-4" />
-              Commerciële infrastructuur voor groei
-            </p>
-
-            <h1 className="mt-7 max-w-3xl text-4xl font-black leading-[1.06] text-[#14213d] sm:text-6xl xl:text-[4.6rem]">
+            <h1 className="max-w-3xl text-4xl font-black leading-[1.06] text-[#14213d] sm:text-6xl xl:text-[4.6rem]">
+              {" "}
               Van losse leads naar{" "}
               <span className="text-[#b98724]">voorspelbare omzetgroei.</span>
             </h1>
@@ -295,7 +299,9 @@ export default function HomePage() {
             <div
               key={label}
               className={`py-7 sm:py-9 ${
-                index % 2 === 1 ? "border-l border-[#14213d]/8 pl-5 sm:pl-8" : ""
+                index % 2 === 1
+                  ? "border-l border-[#14213d]/8 pl-5 sm:pl-8"
+                  : ""
               } ${
                 index > 1 ? "border-t border-[#14213d]/8 lg:border-t-0" : ""
               } ${index === 2 ? "lg:border-l lg:pl-8" : ""}`}
@@ -328,7 +334,9 @@ export default function HomePage() {
                 <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#fcf1d4] text-[#a47720]">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-6 text-lg font-black text-[#14213d]">{title}</h3>
+                <h3 className="mt-6 text-lg font-black text-[#14213d]">
+                  {title}
+                </h3>
                 <p className="mt-3 text-sm leading-6 text-[#6d788d]">{text}</p>
               </article>
             ))}
@@ -355,13 +363,17 @@ export default function HomePage() {
                   <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#14213d] text-white transition group-hover:bg-[#b98724]">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <span className="text-4xl font-black text-[#ebdfc4]">{number}</span>
+                  <span className="text-4xl font-black text-[#ebdfc4]">
+                    {number}
+                  </span>
                 </div>
 
                 <p className="mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-[#b98724]">
                   {tag}
                 </p>
-                <h3 className="mt-3 text-2xl font-black text-[#14213d]">{title}</h3>
+                <h3 className="mt-3 text-2xl font-black text-[#14213d]">
+                  {title}
+                </h3>
                 <p className="mt-4 leading-7 text-[#6d788d]">{text}</p>
               </article>
             ))}
@@ -454,7 +466,9 @@ export default function HomePage() {
                 className="rounded-[1.6rem] border border-[#14213d]/8 bg-white p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_-35px_rgba(20,33,61,0.4)]"
               >
                 <Icon className="h-6 w-6 text-[#b98724]" />
-                <h3 className="mt-5 text-lg font-black text-[#14213d]">{title}</h3>
+                <h3 className="mt-5 text-lg font-black text-[#14213d]">
+                  {title}
+                </h3>
                 <p className="mt-2 text-sm leading-6 text-[#6d788d]">{text}</p>
               </article>
             ))}

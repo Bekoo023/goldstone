@@ -14,26 +14,77 @@ import {
 } from "../components/Icons";
 import SectionHeading from "../components/SectionHeading";
 
-const process = [
+const processSteps = [
   {
     number: "01",
-    title: "Kick-off meeting",
-    text: "We verdiepen ons in jouw bedrijf, aanbod, ideale klant en groeidoelstellingen.",
+    phase: "Fundament",
+    title: "Kick-off & commerciële analyse",
+    text: "We starten met een verdiepende sessie waarin we jouw bedrijf, aanbod, ideale klant en groeidoelstellingen scherp in kaart brengen.",
+    icon: TargetIcon,
+    items: [
+      "Analyse van jouw aanbod",
+      "Ideale klant bepalen",
+      "Groeidoelen vastleggen",
+    ],
   },
   {
     number: "02",
-    title: "Strategie & voorbereiding",
-    text: "We bepalen de propositie, doelgroep, campagne-insteek en scripts voor de opvolging.",
+    phase: "Strategie",
+    title: "Propositie & campagnevoorbereiding",
+    text: "Op basis van de analyse ontwikkelen we een heldere commerciële aanpak die aansluit op jouw doelgroep en markt.",
+    icon: SparkIcon,
+    items: [
+      "Scherpe propositie",
+      "Campagne-insteek bepalen",
+      "Scripts voor opvolging",
+    ],
   },
   {
     number: "03",
+    phase: "Implementatie",
     title: "Funnel, CRM & automatisering",
-    text: "We bouwen de landingspagina, kwalificatieflow en het dashboard voor realtime inzicht.",
+    text: "We bouwen de complete infrastructuur achter jouw campagnes, zodat iedere aanvraag overzichtelijk wordt verwerkt.",
+    icon: FormIcon,
+    items: [
+      "Converterende funnel",
+      "Slimme kwalificatieflow",
+      "Centraal CRM-dashboard",
+    ],
   },
   {
     number: "04",
-    title: "Livegang & optimalisatie",
-    text: "De machine gaat live. We analyseren de data en verbeteren de resultaten doorlopend.",
+    phase: "Groei",
+    title: "Livegang & doorlopende optimalisatie",
+    text: "Na de livegang monitoren we de resultaten en verbeteren we het proces op basis van data en praktijkervaring.",
+    icon: ChartIcon,
+    items: [
+      "Campagnes activeren",
+      "Resultaten analyseren",
+      "Doorlopend optimaliseren",
+    ],
+  },
+];
+
+const infrastructure = [
+  {
+    title: "Campagnes",
+    text: "Gerichte advertenties waarmee je de juiste doelgroep bereikt.",
+    icon: TargetIcon,
+  },
+  {
+    title: "Conversiefunnel",
+    text: "Een duidelijke route die bezoekers omzet in relevante aanvragen.",
+    icon: FormIcon,
+  },
+  {
+    title: "CRM-dashboard",
+    text: "Realtime inzicht in leadinstroom, opvolging en commerciële kansen.",
+    icon: ChartIcon,
+  },
+  {
+    title: "Agenda-integratie",
+    text: "Gekwalificeerde afspraken worden direct in jouw agenda geplaatst.",
+    icon: CalendarIcon,
   },
 ];
 
@@ -41,106 +92,143 @@ const channels = [
   {
     title: "Telefonisch",
     subtitle: "Persoonlijke kwalificatie",
+    text: "We nemen gericht contact op om te bepalen of een aanvraag daadwerkelijk aansluit op jouw aanbod.",
     icon: PhoneIcon,
-    items: ["Tot 4 belpogingen", "Gerichte kwalificatie", "Direct afspraak inplannen"],
+    items: [
+      "Tot vier belpogingen",
+      "Kwalificatie op jouw criteria",
+      "Direct afspraak inplannen",
+    ],
   },
   {
     title: "WhatsApp",
-    subtitle: "Snel en laagdrempelig",
+    subtitle: "Snel en toegankelijk",
+    text: "We gebruiken WhatsApp voor snelle communicatie, bevestigingen en praktische opvolging.",
     icon: MessageIcon,
-    items: ["Persoonlijke opvolging", "Bevestiging", "Afspraakreminders"],
+    items: [
+      "Persoonlijke berichten",
+      "Snelle bevestigingen",
+      "Afspraakreminders",
+    ],
   },
   {
     title: "E-mail",
     subtitle: "Ondersteunende opvolging",
+    text: "E-mail ondersteunt het proces met relevante informatie en duidelijke afspraakbevestigingen.",
     icon: CalendarIcon,
-    items: ["Bevestiging", "Praktijkvoorbeelden", "Afspraakreminders"],
+    items: [
+      "Afspraakbevestigingen",
+      "Relevante informatie",
+      "Automatische reminders",
+    ],
   },
+];
+
+const afterLaunch = [
+  "Je weet waar iedere aanvraag vandaan komt",
+  "Je ziet welke opvolging heeft plaatsgevonden",
+  "Je houdt grip op jouw volledige pipeline",
+  "Je agenda wordt gevuld met relevante gesprekken",
 ];
 
 export default function ProcessPage() {
   return (
     <main>
-      <section className="relative overflow-hidden bg-[#f7f5f0] px-5 py-20 sm:px-8 sm:py-28">
-        <div className="absolute -right-20 top-0 h-72 w-72 rounded-full bg-[#f0c86a]/20 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl">
-          <p className="inline-flex items-center gap-2 rounded-full border border-[#d9b45d]/30 bg-[#fcf4df] px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#946b19] sm:text-[11px]">
-            <SparkIcon className="h-4 w-4" />
-            Onze werkwijze
-          </p>
-          <h1 className="mt-6 max-w-4xl text-4xl font-black leading-tight text-[#14213d] sm:text-6xl">
-            Een compleet commercieel systeem. Binnen 30 dagen live.
-          </h1>
-          <p className="mt-7 max-w-2xl text-base leading-8 text-[#647089] sm:text-lg">
-            Wij bouwen, beheren en verbeteren de infrastructuur die nodig is om
-            aanvragen doelgericht om te zetten in gekwalificeerde afspraken.
-          </p>
-        </div>
-      </section>
-
-      <section className="px-5 py-20 sm:px-8 sm:py-28">
+      <section id="proces" className="scroll-mt-24 px-5 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Van kick-off tot livegang"
-            title="Een helder proces met een duidelijk doel."
-            description="Iedere stap bouwt voort op de vorige. Daardoor ontstaat geen losse campagne, maar een commercieel systeem dat schaalbaar is."
+            eyebrow="Het implementatieproces"
+            title="Vier fases. Eén duidelijke commerciële basis."
+            description="We nemen het volledige traject uit handen en zorgen dat strategie, techniek en opvolging logisch op elkaar aansluiten."
+            center
           />
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {process.map(({ number, title, text }) => (
-              <article
-                key={number}
-                className="relative overflow-hidden rounded-[1.7rem] border border-[#14213d]/10 bg-white p-7 shadow-[0_14px_50px_-38px_rgba(20,33,61,0.4)] transition hover:-translate-y-1 sm:p-8"
-              >
-                <span className="absolute right-6 top-4 text-6xl font-black text-[#f3ead7]">
-                  {number}
-                </span>
-                <span className="relative text-xs font-black uppercase tracking-[0.2em] text-[#b98724]">
-                  Stap {number}
-                </span>
-                <h3 className="relative mt-6 text-xl font-black text-[#14213d]">
-                  {title}
-                </h3>
-                <p className="relative mt-3 max-w-xl leading-7 text-[#6d788d]">{text}</p>
-              </article>
-            ))}
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {processSteps.map(
+              ({ number, phase, title, text, icon: Icon, items }) => (
+                <article
+                  key={number}
+                  className="group relative overflow-hidden rounded-[1.8rem] border border-[#14213d]/10 bg-white p-7 shadow-[0_16px_55px_-42px_rgba(20,33,61,0.45)] transition hover:-translate-y-1 hover:shadow-[0_22px_65px_-40px_rgba(20,33,61,0.52)] sm:p-8"
+                >
+                  <span className="absolute -right-1 -top-5 text-[7rem] font-black leading-none text-[#f7f1e4] transition group-hover:text-[#f2e6ca]">
+                    {number}
+                  </span>
+
+                  <div className="relative">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#14213d] text-[#f0c86a] transition group-hover:bg-[#b98724] group-hover:text-white">
+                        <Icon className="h-5 w-5" />
+                      </span>
+
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#b98724]">
+                        Fase {number} · {phase}
+                      </p>
+                    </div>
+
+                    <h3 className="mt-7 max-w-md text-2xl font-black leading-tight text-[#14213d]">
+                      {title}
+                    </h3>
+
+                    <p className="mt-4 max-w-xl text-sm leading-7 text-[#6d788d]">
+                      {text}
+                    </p>
+
+                    <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+                      {items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-center gap-2 text-xs font-bold leading-5 text-[#647089]"
+                        >
+                          <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e5f3e9] text-[#3b9860]">
+                            <CheckIcon className="h-3.5 w-3.5" />
+                          </span>
+
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ),
+            )}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#14213d] px-5 py-20 text-white sm:px-8 sm:py-28">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Het systeem"
-            title="De juiste infrastructuur achter iedere nieuwe aanvraag."
-            description="Alle onderdelen werken samen. Zo krijg je meer controle over de volledige commerciële klantreis."
-            light
-          />
+      <section className="relative overflow-hidden bg-[#14213d] px-5 py-14 text-white sm:px-8 sm:py-20">
+        <div className="absolute -right-20 top-0 h-80 w-80 rounded-full bg-[#f0c86a]/10 blur-3xl" />
 
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {[
-              {
-                icon: TargetIcon,
-                title: "Aantrekken",
-                text: "Doelgerichte advertenties bereiken de juiste markt met een sterke propositie.",
-              },
-              {
-                icon: FormIcon,
-                title: "Kwalificeren",
-                text: "Een heldere funnel verzamelt relevante informatie en filtert tijdverspillers.",
-              },
-              {
-                icon: ChartIcon,
-                title: "Sturen",
-                text: "Het CRM-dashboard maakt leadinstroom, opvolging en resultaten zichtbaar.",
-              },
-            ].map(({ icon: Icon, title, text }) => (
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f0c86a]">
+                De infrastructuur
+              </p>
+
+              <h2 className="mt-4 text-3xl font-black leading-tight sm:text-5xl">
+                Alles wat nodig is om grip te krijgen op jouw pipeline.
+              </h2>
+            </div>
+
+            <p className="max-w-2xl text-base leading-8 text-[#c8d1df] sm:text-lg">
+              Achter iedere campagne bouwen we een solide basis. Daardoor weet
+              je niet alleen hoeveel aanvragen er binnenkomen, maar ook wat
+              ermee gebeurt en waar commerciële kansen ontstaan.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {infrastructure.map(({ title, text, icon: Icon }) => (
               <article
                 key={title}
-                className="rounded-[1.7rem] border border-white/10 bg-white/5 p-7 transition hover:-translate-y-1 hover:bg-white/10"
+                className="rounded-[1.7rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:bg-white/10"
               >
-                <Icon className="h-6 w-6 text-[#f0c86a]" />
-                <h3 className="mt-6 text-xl font-black">{title}</h3>
+                <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#f0c86a]/15 text-[#f0c86a]">
+                  <Icon className="h-5 w-5" />
+                </span>
+
+                <h3 className="mt-6 text-lg font-black">{title}</h3>
+
                 <p className="mt-3 text-sm leading-6 text-[#c8d1df]">{text}</p>
               </article>
             ))}
@@ -148,35 +236,45 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="bg-[#f7f5f0] px-5 py-20 sm:px-8 sm:py-28">
+      <section className="bg-[#f7f5f0] px-5 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Menselijke opvolging"
-            title="Geautomatiseerd waar het kan. Persoonlijk waar het telt."
-            description="Nieuwe aanvragen worden snel en zorgvuldig opgevolgd via meerdere kanalen. Zo vergroot je de kans op een kwalitatief gesprek."
+            eyebrow="Persoonlijke opvolging"
+            title="Automatisering ondersteunt het proces. Menselijk contact maakt het verschil."
+            description="Nieuwe aanvragen worden zorgvuldig opgevolgd via meerdere kanalen. Zo blijft geen waardevolle kans onbenut."
             center
           />
 
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
-            {channels.map(({ title, subtitle, items, icon: Icon }) => (
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {channels.map(({ title, subtitle, text, items, icon: Icon }) => (
               <article
                 key={title}
-                className="rounded-[1.7rem] border border-[#14213d]/10 bg-white p-7 transition hover:-translate-y-1 hover:shadow-[0_18px_50px_-35px_rgba(20,33,61,0.4)]"
+                className="rounded-[1.8rem] border border-[#14213d]/10 bg-white p-7 transition hover:-translate-y-1 hover:shadow-[0_18px_55px_-38px_rgba(20,33,61,0.42)]"
               >
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#fcf1d4] text-[#a47720]">
                   <Icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-7 text-xl font-black text-[#14213d]">{title}</h3>
-                <p className="mt-1 text-sm font-bold text-[#b98724]">{subtitle}</p>
-                <ul className="mt-6 space-y-3">
+
+                <h3 className="mt-6 text-xl font-black text-[#14213d]">
+                  {title}
+                </h3>
+
+                <p className="mt-1 text-sm font-bold text-[#b98724]">
+                  {subtitle}
+                </p>
+
+                <p className="mt-4 text-sm leading-6 text-[#6d788d]">{text}</p>
+
+                <ul className="mt-6 space-y-3 border-t border-[#14213d]/10 pt-5">
                   {items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm font-bold text-[#6d788d]"
+                      className="flex items-center gap-3 text-sm font-bold text-[#647089]"
                     >
                       <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e5f3e9] text-[#3b9860]">
                         <CheckIcon className="h-3.5 w-3.5" />
                       </span>
+
                       {item}
                     </li>
                   ))}
@@ -184,40 +282,42 @@ export default function ProcessPage() {
               </article>
             ))}
           </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 text-sm font-black text-[#a47720] transition hover:gap-3"
-            >
-              Bespreek jouw groeikansen
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="px-5 py-20 sm:px-8 sm:py-28">
-        <div className="mx-auto max-w-7xl rounded-[2rem] border border-[#14213d]/10 bg-white p-7 shadow-[0_18px_60px_-45px_rgba(20,33,61,0.5)] sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[auto_1fr_auto] lg:items-center">
-            <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#fcf1d4] text-[#a47720]">
-              <ClockIcon className="h-6 w-6" />
-            </span>
-            <div>
-              <h2 className="text-2xl font-black text-[#14213d]">
-                Binnen 30 dagen draait jouw commerciële machine.
-              </h2>
-              <p className="mt-2 leading-7 text-[#6d788d]">
-                Van strategie tot livegang: één duidelijke aanpak met zichtbare resultaten.
-              </p>
-            </div>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#14213d] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#26395e]"
-            >
-              Plan een gesprek
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
+      <section className="px-5 py-12 sm:px-8 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 rounded-[2rem] border border-[#14213d]/10 bg-white p-7 shadow-[0_18px_60px_-45px_rgba(20,33,61,0.5)] sm:p-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#b98724]">
+              Na de livegang
+            </p>
+
+            <h2 className="mt-3 text-3xl font-black leading-tight text-[#14213d] sm:text-4xl">
+              Geen black box, maar volledige controle over jouw commerciële
+              proces.
+            </h2>
+
+            <p className="mt-4 max-w-xl text-sm leading-7 text-[#6d788d] sm:text-base">
+              Je krijgt een overzichtelijke werkwijze waarin iedere aanvraag,
+              actie en afspraak inzichtelijk blijft.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {afterLaunch.map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-2xl bg-[#f7f5f0] p-4"
+              >
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#e5f3e9] text-[#3b9860]">
+                  <CheckIcon className="h-4 w-4" />
+                </span>
+
+                <p className="text-sm font-bold leading-6 text-[#647089]">
+                  {item}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
