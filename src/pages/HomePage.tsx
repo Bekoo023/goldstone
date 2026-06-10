@@ -10,7 +10,6 @@ import {
   LayersIcon,
   MessageIcon,
   PhoneIcon,
-  SparkIcon,
   TargetIcon,
   UsersIcon,
 } from "../components/Icons";

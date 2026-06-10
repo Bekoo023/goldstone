@@ -1,11 +1,8 @@
-import { Link } from "react-router";
 import CtaSection from "../components/CtaSection";
 import {
-  ArrowRightIcon,
   CalendarIcon,
   ChartIcon,
   CheckIcon,
-  ClockIcon,
   FormIcon,
   MessageIcon,
   PhoneIcon,

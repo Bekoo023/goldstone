@@ -4,7 +4,6 @@ import {
   CalendarIcon,
   CheckIcon,
   ClockIcon,
-  SparkIcon,
   TargetIcon,
 } from "../components/Icons";
 
