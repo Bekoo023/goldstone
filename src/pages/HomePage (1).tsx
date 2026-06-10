@@ -1,6 +1,5 @@
 import { Link } from "react-router";
 import CtaSection from "../components/CtaSection";
-import { Analytics } from "@vercel/analytics/next"
 import {
   ArrowRightIcon,
   CalendarIcon,
